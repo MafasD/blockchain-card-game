@@ -2,28 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CardVisualScript : MonoBehaviour
+public class CardInitScript : MonoBehaviour
 {
     [SerializeField] int elementID; // 0 = water, 1 = fire, 2 = leaf
-    [SerializeField] GameObject elementsParent;
-    [SerializeField] TMP_Text mainTMP, infoTMP;
-    bool isCardInitialized = false;
+    [SerializeField] GameObject elementObj;
+    [SerializeField] Sprite[] elementIcons; // 0 = water, 1 = fire, 2 = leaf
+    [SerializeField] TMP_Text nameTMP, infoTMP; // Card name and info
 
     void Awake()
     {
-        if (isCardInitialized) { return ; }
-
-        int childCount = elementsParent.transform.childCount;
-        for (int i = 0; i < childCount; i++)
-        {
-            GameObject child = elementsParent.transform.GetChild(i).gameObject;
-            bool isSameIndex = i == elementID;
-            child.SetActive(isSameIndex);
-        }
-
+        elementObj.GetComponent<Image>().sprite = elementIcons[elementID]; // Change icon sprite by id
         SetIconInfo();
-        isCardInitialized = true;
         
     }
 
@@ -32,7 +23,7 @@ public class CardVisualScript : MonoBehaviour
         string name, info;
         if(elementID == 0) // Water element
         {
-            name = "Hydro";
+            name = "Hydro Blast";
             info = "Type: Water\nEffect: Deals +1 water damage";
         }
         else if (elementID == 1) // Fire element
@@ -46,7 +37,7 @@ public class CardVisualScript : MonoBehaviour
             info = "Type: Leaf\nEffect: Deals +1 leaf damage";
         }
 
-        mainTMP.text = name;
+        nameTMP.text = name;
         infoTMP.text = info;
     }
 
@@ -58,7 +49,6 @@ public class CardVisualScript : MonoBehaviour
     public void SetElementID(int id)
     {
         elementID = id;
-        isCardInitialized = true;
     }
 
 }
