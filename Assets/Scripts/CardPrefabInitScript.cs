@@ -4,21 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardInitScript : MonoBehaviour
+// Script for the card prefab
+// elementID determines which type of element the card is
+public class CardPrefabInitScript : MonoBehaviour
 {
     [SerializeField] int elementID; // 0 = water, 1 = fire, 2 = leaf
+    [SerializeField] bool showInfoText = true; // Text info can be set hidden from the editor
     [SerializeField] GameObject elementObj;
-    [SerializeField] Sprite[] elementIcons; // 0 = water, 1 = fire, 2 = leaf
+    [SerializeField] Sprite[] elementIcons; // Sprite array of the elements: 0 = water, 1 = fire, 2 = leaf
     [SerializeField] TMP_Text nameTMP, infoTMP; // Card name and info
 
-    void Awake()
+    private void Awake()
     {
         elementObj.GetComponent<Image>().sprite = elementIcons[elementID]; // Change icon sprite by id
         SetIconInfo();
         
     }
 
-    void SetIconInfo()
+    private void SetIconInfo()
     {
         string name, info;
         if(elementID == 0) // Water element
@@ -39,16 +42,23 @@ public class CardInitScript : MonoBehaviour
 
         nameTMP.text = name;
         infoTMP.text = info;
+
+        infoTMP.gameObject.SetActive(showInfoText); // Hides card info if wanted (test)
     }
 
+
+    // Get the element id of the card this script is attached to
     public int GetElementID()
     {
         return elementID;
     }
 
-    public void SetElementID(int id)
+    // Set or change the element id values
+    public void SetElement(int id)
     {
         elementID = id;
+        elementObj.GetComponent<Image>().sprite = elementIcons[elementID]; // Change icon sprite by id
+        SetIconInfo();
     }
 
 }

@@ -1,2 +1,0 @@
-License type: cc0
-source: https://opengameart.org/content/rpg-ui-1
