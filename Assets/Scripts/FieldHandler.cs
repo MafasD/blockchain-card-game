@@ -8,6 +8,12 @@ public class FieldHandler : MonoBehaviour
     public GameObject MainController;
     GameObject MyCard;
 
+    private void Awake()
+    {
+        if(MainController == null)
+            MainController = GameObject.FindWithTag("MainController");
+    }
+
     public void AddCard(GameObject child)
     {
         if (transform.childCount > 0)
@@ -18,13 +24,15 @@ public class FieldHandler : MonoBehaviour
         MyCard.transform.SetParent(transform, false);
         MyCard.transform.position = transform.position;
 
-        if(MainController != null)
-            MainController.GetComponent<MainController>().NextTurn();
+        MainController.GetComponent<MainController>().NextTurn();
     }
 
-    public GameObject GetCard()
+    public Card GetCard()
     {
-        return MyCard;
+        int elementID = MyCard.GetComponent<CardPrefabInitScript>().GetElementID();
+        int damage = 1;
+        Card card = new Card(elementID,damage);
+        return card;
     }
 
     public void RevealCards()

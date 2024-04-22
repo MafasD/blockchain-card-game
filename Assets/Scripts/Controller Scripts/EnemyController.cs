@@ -16,10 +16,9 @@ public class EnemyController : CardController
     }
 
 
-    public override void AddCardToField(GameObject card, bool addToMyField)
+    public override void AddCardToField(GameObject card)
     {
-        if(addToMyField)
-            MyField.GetComponent<FieldHandler>().AddCard(card);
+        MyField.GetComponent<FieldHandler>().AddCard(card);
     }
 
     public override void MyTurn()
@@ -41,7 +40,7 @@ public class EnemyController : CardController
 
     }
 
-    public override GameObject GetMyCard()
+    public override Card GetMyCard()
     {
         return MyField.GetComponent<FieldHandler>().GetCard();
     }

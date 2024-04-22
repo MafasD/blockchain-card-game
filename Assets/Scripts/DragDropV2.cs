@@ -8,8 +8,8 @@ using UnityEngine.UIElements;
 
 public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] GameObject frontSide, backSide;
-    GameObject playerField, currentField;
+    [SerializeField] GameObject Frontside, Backside;
+    GameObject PlayerField, CurrentField;
     Vector2 startPosition;
     bool isDragging = false;
     bool isPlaced = false;
@@ -17,10 +17,10 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void Awake()
     {
-        playerField = GameObject.FindWithTag("PlayerField");
+        PlayerField = GameObject.FindWithTag("PlayerField");
         startPosition = transform.localPosition;
-        frontSide.SetActive(true);
-        backSide.SetActive(false);
+        Frontside.SetActive(true);
+        Backside.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -29,25 +29,22 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             return;
 
         if (other.CompareTag("PlayerField"))
-            currentField = other.gameObject;
+            CurrentField = other.gameObject;
 
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerField") && currentField != null)
+        if (other.CompareTag("PlayerField") && CurrentField != null)
         {
-            currentField = null;
+            CurrentField = null;
         }
     }
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isPlaced)
-            return;
-
-        else if(MainController.PlayerCardLock)
+        if (isPlaced || !MainController.isPlayersTurn)
             return;
 
         startPosition = transform.localPosition;
@@ -67,14 +64,14 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if(isPlaced)
             return;
         
-        if (currentField == playerField)
+        if (CurrentField == PlayerField)
         {
-            playerField.GetComponent<FieldHandler>().AddCard(gameObject);
+            PlayerField.GetComponent<FieldHandler>().AddCard(gameObject);
             isPlaced = true;
-            frontSide.SetActive(false);
-            backSide.SetActive(true);
+            Frontside.SetActive(false);
+            Backside.SetActive(true);
         }
-        else if (currentField == null)
+        else if (CurrentField == null)
             transform.localPosition = startPosition;
             
         isDragging = false;

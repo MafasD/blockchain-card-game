@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : CardController
 {
-    public override void AddCardToField(GameObject card, bool addToMyField)
+    public override void AddCardToField(GameObject card)
     {
 
     }
@@ -21,7 +21,7 @@ public class PlayerController : CardController
         
     }
 
-    public override GameObject GetMyCard()
+    public override Card GetMyCard()
     {
         return MyField.GetComponent<FieldHandler>().GetCard();
     }

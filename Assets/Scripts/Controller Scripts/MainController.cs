@@ -8,51 +8,49 @@ public class MainController : MonoBehaviour
     public GameObject PlayerController, EnemyController;
     public Button nextRoundBtn;
     GameObject CurrentController;
-    int turnCount = 0;
-    bool isNextTurn = false;
+    int turnCount, roundCount;
+    bool startNewTurn = false;
 
-    public static bool PlayerCardLock { get; set; }
+    CompareCards compareCards = new();
+    public static bool isPlayersTurn { get; set; }
 
     void Awake()
     {
         CurrentController = PlayerController;
-        MainController.PlayerCardLock = false;
+        MainController.isPlayersTurn = true;
         nextRoundBtn.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if(isNextTurn)
+        if(startNewTurn)
         {
-            isNextTurn = false;
-            StartCoroutine(IEStartNewRound());
-            
+            startNewTurn = false;
+            CompareCards();         
         }
     }
 
 
     public void NextTurn()
     {
-        if (CurrentController == PlayerController)
-        {
-            Debug.Log("Enemy turn");
-            CurrentController = EnemyController;
-            MainController.PlayerCardLock = true;
-        }
-        else
-        {
-            Debug.Log("Player turn");
-            CurrentController = PlayerController;
-            MainController.PlayerCardLock = false;
-        }
         turnCount++;
 
-        if(turnCount % 2 == 0)
+        if(turnCount == 0)
         {
+            CurrentController = PlayerController;
+        }
+        else if (turnCount == 1)
+        {
+            CurrentController = EnemyController;
+        }
+        else
+        { 
+            turnCount = 0;
+            roundCount++;
             RevealCards();
             return;
         }
-
+        MainController.isPlayersTurn = turnCount == 0;
         CurrentController.GetComponent<CardController>().MyTurn();
     }
 
@@ -61,28 +59,64 @@ public class MainController : MonoBehaviour
         PlayerController.GetComponent<CardController>().RevealCardFromField();
         EnemyController.GetComponent<CardController>().RevealCardFromField();
         nextRoundBtn.gameObject.SetActive(true);
-        isNextTurn = true;
+        startNewTurn = true;
     }
 
     void CompareCards()
     {
-        GameObject playerCard = PlayerController.GetComponent<CardController>().GetMyCard();
-        GameObject enemyCard = EnemyController.GetComponent<CardController>().GetComponent<CardController>().GetMyCard();
+        Card playerCard = PlayerController.GetComponent<CardController>().GetMyCard();
+        Card enemyCard = EnemyController.GetComponent<CardController>().GetComponent<CardController>().GetMyCard();
+        int results = compareCards.Compare(playerCard, enemyCard);
+        
+        if(results == 0) // DRAW
+        {
+            Debug.Log($"Round {roundCount}: draw");
+        }
+        else if(results == 1) // PLAYER WINS
+        {
+            Debug.Log($"Round {roundCount}: player wins");
+        }
+        else // ENEMY WINS
+        {
+            Debug.Log($"Round {roundCount}: enemy wins");
+        }
 
-        if(playerCard != null && enemyCard != null ) 
-            return;
-    }
-
-    IEnumerator IECompareCards()
-    {
-        yield return new WaitForSeconds(1f);
+        StartCoroutine(IEStartNewRound());
     }
 
     IEnumerator IEStartNewRound()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         PlayerController.GetComponent<CardController>().AddCardsToDiscardPile();
         EnemyController.GetComponent<CardController>().AddCardsToDiscardPile();
+        MainController.isPlayersTurn = true;
     }
 
+}
+
+
+public class CompareCards
+{
+    public int Compare(Card playerCard, Card enemyCard) // 0 = draw, 1 = player, 2 = enemy
+    {
+        int result = CompareElements(playerCard.elementID, enemyCard.elementID);
+        return result;
+    }
+
+    private int CompareElements(int playerElement, int enemyElement) // 0 = draw, 1 = player, 2 = enemy
+    {
+        // Draw
+        if (playerElement == enemyElement)
+            return 0;
+
+        // Player wins
+        else if (playerElement == 0 && enemyElement == 1 ||   // water vs fire
+            playerElement == 1 && enemyElement == 2 ||  // fire vs leaf
+            playerElement == 2 && enemyElement == 0)    // leaf vs water
+            return 1;
+
+        // enemy wins
+        else
+            return 2;
+    }
 }

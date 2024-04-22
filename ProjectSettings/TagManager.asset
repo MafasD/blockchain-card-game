@@ -8,6 +8,7 @@ TagManager:
   - EnemyField
   - PlayerController
   - EnemyController
+  - MainController
   layers:
   - Default
   - TransparentFX

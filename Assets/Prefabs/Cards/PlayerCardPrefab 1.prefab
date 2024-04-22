@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 102646723539231711}
   - component: {fileID: 6802706201148113819}
   m_Layer: 5
-  m_Name: V1TestCardPrefab 1
+  m_Name: PlayerCardPrefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc05d665404d1146ad08d341d97f760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontSide: {fileID: 7732468125906766794}
-  backSide: {fileID: 4025628579619640368}
+  Frontside: {fileID: 7732468125906766794}
+  Backside: {fileID: 4025628579619640368}
 --- !u!61 &102646723539231711
 BoxCollider2D:
   m_ObjectHideFlags: 0
