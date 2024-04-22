@@ -22,12 +22,14 @@ public class DragDropTest : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         currentField = collision.gameObject;
+        Debug.Log("Hit start");
     }
 
     //Called when a collision with another collider ends, which we use to determine when a card should be returned to original position if the dragging ends.
     private void OnCollisionExit2D(Collision2D collision)
     {
         currentField = null;
+        Debug.Log("Hit exit");
     }
 
     //Called when dragging of the card starts.
