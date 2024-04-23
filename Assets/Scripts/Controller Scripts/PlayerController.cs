@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class PlayerController : CardController
 {
-    public override void AddCardToField(GameObject card)
-    {
-
-    }
-
+    bool isPlayersTurn = true; // Flag checking if it's players turn
     public override void MyTurn()
     {
+        isPlayersTurn = true;
+    }
 
+    public override void EndOfMyTurn()
+    {
+        isPlayersTurn = false;
     }
 
     public override void AddCardsToDiscardPile()
     {
-
         MyField.GetComponent<FieldHandler>().RemoveCards();
-        
     }
 
-    public override Card GetMyCard()
+    public void SetIsPlayersTurn(bool isPlayersTurn)
     {
-        return MyField.GetComponent<FieldHandler>().GetCard();
+        this.isPlayersTurn = isPlayersTurn;
     }
+
+    public bool CheckIfPlayersTurn()
+    {
+        return isPlayersTurn;
+    }
+
 }

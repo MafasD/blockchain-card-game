@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 // Script for the card prefab
 // elementID determines which type of element the card is
-public class CardPrefabInitScript : MonoBehaviour
+public class InitCardPrefab : MonoBehaviour
 {
     [SerializeField] int elementID; // 0 = water, 1 = fire, 2 = leaf
     [SerializeField] bool showInfoText = true; // Text info can be set hidden from the editor

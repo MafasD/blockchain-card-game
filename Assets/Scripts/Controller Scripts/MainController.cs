@@ -1,68 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
-    public GameObject PlayerController, EnemyController;
-    public Button nextRoundBtn;
-    GameObject CurrentController;
-    int turnCount, roundCount;
-    bool startNewTurn = false;
+    public GameObject PlayerController, EnemyController; // Card controllers for bridging methods between player- and enemy fields
+    GameObject CurrentController; // Determines which controller is currently in use (player or enemy/bot)
+    public TMP_Text testInfoTMP; // Shows information on the screen (for testing!)
+    int turnCounter, roundCount; // Keeps track who is playing now (0=player, 1=enemy/bot, 2=round end)
+    bool bothCardsRevealed = false; // Flag for checking up if both players cards are revealed
 
-    CompareCards compareCards = new();
-    public static bool isPlayersTurn { get; set; }
+    CompareCards compareCards = new(); // Object containing the functions for comparing player and enemy cards (elemnets)
 
     void Awake()
     {
-        CurrentController = PlayerController;
-        MainController.isPlayersTurn = true;
-        nextRoundBtn.gameObject.SetActive(false);
+        CurrentController = PlayerController; // Player starts the game
+        CurrentController.GetComponent<CardController>().MyTurn();
+        testInfoTMP.text = "";
     }
 
     void Update()
     {
-        if(startNewTurn)
+        if(bothCardsRevealed) // When both cards are visible -> compare those cards
         {
-            startNewTurn = false;
-            CompareCards();         
+            bothCardsRevealed = false;
+            CompareCards();
         }
     }
 
-
-    public void NextTurn()
+    public void NextTurn() // When card is placed on the field -> this method is called manually from the "FieldHandler" script
     {
-        turnCount++;
+        if (turnCounter > 1)
+            turnCounter = 0;
+        else
+            turnCounter++;
 
-        if(turnCount == 0)
+        if(turnCounter == 0) // Player's turn next
         {
             CurrentController = PlayerController;
         }
-        else if (turnCount == 1)
+        else if (turnCounter == 1) // Enemy's turn next
         {
+            PlayerController.GetComponent<PlayerController>().EndOfMyTurn(); // Ends the turn for the player
             CurrentController = EnemyController;
         }
-        else
+        else // Both players are ready -> reveal cards
         { 
-            turnCount = 0;
             roundCount++;
             RevealCards();
             return;
         }
-        MainController.isPlayersTurn = turnCount == 0;
-        CurrentController.GetComponent<CardController>().MyTurn();
+
+        CurrentController.GetComponent<CardController>().MyTurn(); // Start turn method for the current controller
     }
 
-    public void RevealCards()
+    void RevealCards() // Sets card visible to both players
     {
         PlayerController.GetComponent<CardController>().RevealCardFromField();
         EnemyController.GetComponent<CardController>().RevealCardFromField();
-        nextRoundBtn.gameObject.SetActive(true);
-        startNewTurn = true;
+        bothCardsRevealed = true;
     }
 
-    void CompareCards()
+    void CompareCards() // Compares both cards and determines who wins
     {
         Card playerCard = PlayerController.GetComponent<CardController>().GetMyCard();
         Card enemyCard = EnemyController.GetComponent<CardController>().GetComponent<CardController>().GetMyCard();
@@ -70,40 +70,44 @@ public class MainController : MonoBehaviour
         
         if(results == 0) // DRAW
         {
-            Debug.Log($"Round {roundCount}: draw");
+            testInfoTMP.text = $"Round {roundCount}: Draw";
+
         }
         else if(results == 1) // PLAYER WINS
         {
-            Debug.Log($"Round {roundCount}: player wins");
+            testInfoTMP.text = $"Round {roundCount}: You win!";
+
         }
         else // ENEMY WINS
         {
-            Debug.Log($"Round {roundCount}: enemy wins");
+            testInfoTMP.text = $"Round {roundCount}: You lose";
+
         }
 
         StartCoroutine(IEStartNewRound());
     }
 
-    IEnumerator IEStartNewRound()
+    IEnumerator IEStartNewRound() // Coroutine for waiting a little before sending cards to discard pile
     {
         yield return new WaitForSeconds(3f);
         PlayerController.GetComponent<CardController>().AddCardsToDiscardPile();
         EnemyController.GetComponent<CardController>().AddCardsToDiscardPile();
-        MainController.isPlayersTurn = true;
+        testInfoTMP.text = "";
+        NextTurn();
     }
 
 }
 
 
-public class CompareCards
+public class CompareCards // Compares two cards based on the element id's
 {
-    public int Compare(Card playerCard, Card enemyCard) // 0 = draw, 1 = player, 2 = enemy
+    public int Compare(Card playerCard, Card enemyCard)
     {
         int result = CompareElements(playerCard.elementID, enemyCard.elementID);
-        return result;
+        return result; // 0 = draw, 1 = player, 2 = enemy
     }
 
-    private int CompareElements(int playerElement, int enemyElement) // 0 = draw, 1 = player, 2 = enemy
+    private int CompareElements(int playerElement, int enemyElement)
     {
         // Draw
         if (playerElement == enemyElement)
