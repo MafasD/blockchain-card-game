@@ -25,7 +25,7 @@ public class PlayerController : CardController
         this.isPlayersTurn = isPlayersTurn;
     }
 
-    public bool CheckIfPlayersTurn()
+    public bool CheckIfPlayersTurn() // Getter for player's turn flag (used in DragDropV2.cs)
     {
         return isPlayersTurn;
     }

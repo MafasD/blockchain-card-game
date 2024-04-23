@@ -6,7 +6,7 @@ using UnityEngine;
 public class FieldHandler : MonoBehaviour
 {
     public GameObject MainController;
-    GameObject MyCard; // Card that is dropped on the field
+    GameObject MyCard; // Card that is dropped on the field (as a child)
 
     private void Awake()
     {
@@ -14,16 +14,14 @@ public class FieldHandler : MonoBehaviour
             MainController = GameObject.FindWithTag("MainController");
     }
 
-    public void AddCard(GameObject child) // Called everytime a card is dropped as a child
+    public void AddCard(GameObject child) // Called everytime a new card is added (DragDropV2.cs)
     {
-        if (transform.childCount > 0) // Checks if card already exists on the field (not necessary)
-            Destroy(transform.GetChild(0).gameObject);
-
+        // Sets object as a child
         MyCard = child;
         MyCard.transform.SetParent(transform, false);
         MyCard.transform.position = transform.position;
 
-        MainController.GetComponent<MainController>().NextTurn(); // Send info to the main controller to continue process
+        MainController.GetComponent<MainController>().NextTurn(); // Send info to the MainController to continue process
     }
 
     public Card GetCard() // Creates a Card object (class)
@@ -34,9 +32,8 @@ public class FieldHandler : MonoBehaviour
         return card;
     }
 
-    public void RevealCards() // Reveals all the cards that are child objects
+    public void RevealCards() // Reveals all the cards that are child objects (current build supports only 1 child)
     {
-        // Loop not necessary in current build
         int childCount = transform.childCount;
         for (int i = 0; i < childCount; i++)
         {
@@ -44,13 +41,13 @@ public class FieldHandler : MonoBehaviour
         }
     }
 
-    public void RemoveCards() // Remove all the cards that are child objects
+    public void RemoveCards() // This method deletes all the cards -> for future updates move cards to the discard pile
     {
-        // Loop not necessary in current build
+
         int childCount = transform.childCount;
         for (int i = 0; i < childCount; i++)
         {
-            Destroy(transform.GetChild(i).gameObject); ;
+            Destroy(transform.GetChild(i).gameObject); // Destroys game objects completely (current build supports only 1 child)
         }
             
     }

@@ -11,7 +11,7 @@ public class MainController : MonoBehaviour
     int turnCounter, roundCount; // Keeps track who is playing now (0=player, 1=enemy/bot, 2=round end)
     bool bothCardsRevealed = false; // Flag for checking up if both players cards are revealed
 
-    CompareCards compareCards = new(); // Object containing the functions for comparing player and enemy cards (elemnets)
+    readonly CompareCards compareCards = new(); // Object containing the functions for comparing player and enemy cards (elemnets)
 
     void Awake()
     {
@@ -33,18 +33,18 @@ public class MainController : MonoBehaviour
     {
         if (turnCounter > 1)
             turnCounter = 0;
+
         else
             turnCounter++;
 
-        if(turnCounter == 0) // Player's turn next
-        {
+        CurrentController.GetComponent<CardController>().EndOfMyTurn(); // Inform to the current controller when turn ends
+
+        if (turnCounter == 0) // Player's turn next
             CurrentController = PlayerController;
-        }
+
         else if (turnCounter == 1) // Enemy's turn next
-        {
-            PlayerController.GetComponent<PlayerController>().EndOfMyTurn(); // Ends the turn for the player
             CurrentController = EnemyController;
-        }
+
         else // Both players are ready -> reveal cards
         { 
             roundCount++;
@@ -55,7 +55,7 @@ public class MainController : MonoBehaviour
         CurrentController.GetComponent<CardController>().MyTurn(); // Start turn method for the current controller
     }
 
-    void RevealCards() // Sets card visible to both players
+    void RevealCards() // Set field cards visible
     {
         PlayerController.GetComponent<CardController>().RevealCardFromField();
         EnemyController.GetComponent<CardController>().RevealCardFromField();
@@ -68,17 +68,17 @@ public class MainController : MonoBehaviour
         Card enemyCard = EnemyController.GetComponent<CardController>().GetComponent<CardController>().GetMyCard();
         int results = compareCards.Compare(playerCard, enemyCard);
         
-        if(results == 0) // DRAW
+        if(results == 0) // Draw
         {
             testInfoTMP.text = $"Round {roundCount}: Draw";
 
         }
-        else if(results == 1) // PLAYER WINS
+        else if(results == 1) // Player wins
         {
             testInfoTMP.text = $"Round {roundCount}: You win!";
 
         }
-        else // ENEMY WINS
+        else // Enemy wins
         {
             testInfoTMP.text = $"Round {roundCount}: You lose";
 
