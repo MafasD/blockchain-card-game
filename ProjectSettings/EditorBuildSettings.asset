@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: 423d40736c8ccf34bbc19584f924523d
+  - enabled: 1
+    path: Assets/Scenes/DeckBuilderScene.unity
+    guid: b8a486fd3c37e1245ae6f5dffdb1b591
   m_configObjects: {}
