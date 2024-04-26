@@ -3622,8 +3622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53686f5b6e4911f4f94a184ab36b3a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerController: {fileID: 148218030}
-  EnemyController: {fileID: 237390612}
+  PlayerController: {fileID: 148218032}
+  EnemyController: {fileID: 237390614}
   testInfoTMP: {fileID: 1831182488}
   playerHealthBar: {fileID: 1722732409}
   opponentHealthBar: {fileID: 1514940089}

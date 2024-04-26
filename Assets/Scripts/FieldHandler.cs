@@ -5,14 +5,8 @@ using UnityEngine;
 
 public class FieldHandler : MonoBehaviour
 {
-    public GameObject MainController;
+    public MainController MainController;
     GameObject MyCard; // Card that is dropped on the field (as a child)
-
-    private void Awake()
-    {
-        if(MainController == null)
-            MainController = GameObject.FindWithTag("MainController");
-    }
 
     public void AddCard(GameObject child) // Called everytime a new card is added (DragDropV2.cs)
     {
@@ -21,7 +15,7 @@ public class FieldHandler : MonoBehaviour
         MyCard.transform.SetParent(transform, false);
         MyCard.transform.position = transform.position;
 
-        MainController.GetComponent<MainController>().NextTurn(); // Send info to the MainController to continue process
+        MainController.NextTurn(); // Send info to the MainController to continue process
     }
 
     public Card GetCard() // Creates a Card object (class)
