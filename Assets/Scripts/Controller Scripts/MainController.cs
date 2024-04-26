@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class MainController : MonoBehaviour
     bool bothCardsRevealed = false; // Flag for checking up if both players cards are revealed
 
     readonly CompareCards compareCards = new(); // Object containing the functions for comparing player and enemy cards (elemnets)
+
+    public Image playerHealthBar;
+    public Image opponentHealthBar;
+    public float damagePercentage = 0.1f; //0.1f = 10% damage. This can be adjusted in the MainController's inspector window
 
     void Awake()
     {
@@ -77,15 +83,47 @@ public class MainController : MonoBehaviour
         {
             testInfoTMP.text = $"Round {roundCount}: You win!";
 
+            DamageOpponent(); //Player wins = opponent takes damage
         }
         else // Enemy wins
         {
             testInfoTMP.text = $"Round {roundCount}: You lose";
 
+            DamagePlayer(); //Player loses = player takes damage
         }
 
         StartCoroutine(IEStartNewRound());
     }
+    //Method for damaging player
+    void DamagePlayer()
+    {
+        //Subtracts the damage from the healthbar fill amount
+        playerHealthBar.fillAmount -= damagePercentage;
+        //Checks if game should end based on current health
+        CheckEndGame(playerHealthBar);
+    }
+    //Method for damaging opponent
+    void DamageOpponent()
+    {
+        opponentHealthBar.fillAmount -= damagePercentage;
+        CheckEndGame(opponentHealthBar);
+    }
+    //Method for match end
+    void CheckEndGame(Image healthBar)
+    {
+        if (healthBar.fillAmount <= 0.01) //If either healthbar value is lower than or equal to 0.01, match ends and player will be directed to a match end scene.
+        {
+            if (healthBar == playerHealthBar)
+            {
+                SceneManager.LoadScene("LoseScene");
+            }
+            else if (healthBar == opponentHealthBar)
+            {
+                SceneManager.LoadScene("WinScene");
+            }
+        }
+    }
+
 
     IEnumerator IEStartNewRound() // Coroutine for waiting a little before sending cards to discard pile
     {

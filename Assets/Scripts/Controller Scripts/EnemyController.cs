@@ -43,6 +43,9 @@ public class EnemyController : CardController
         yield return new WaitForSeconds(waitTime); // Waits a little bit before continuing
 
         GameObject pickACard = Bot.ChooseRandomCard();
+        
+        //Sets the card's scale to 1.2x, because for some reason the OpponentHand affects the scaling.
+        pickACard.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         MyField.GetComponent<FieldHandler>().AddCard(pickACard); // Adds card manually to the field
 
     }
