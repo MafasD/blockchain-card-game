@@ -3628,6 +3628,7 @@ MonoBehaviour:
   playerHealthBar: {fileID: 1722732409}
   opponentHealthBar: {fileID: 1514940089}
   damagePercentage: 0.1
+  maxRoundCount: 30
 --- !u!1001 &1071490000
 PrefabInstance:
   m_ObjectHideFlags: 0
