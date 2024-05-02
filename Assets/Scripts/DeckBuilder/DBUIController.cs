@@ -11,15 +11,21 @@ namespace DeckBuilder
 {
     public class UIController : UIButtons
     {
+        [SerializeField] DeckContentHandler deckContentHandler;
         [SerializeField] TMP_Dropdown loadDeckDropdown;
         BasicDropDownListener loadDeckDropDownListener;
+        LoadJsonFile loadJsonFile;
+        SaveJsonFile saveJsonFile;
+        
+        int currentDeck = 0;
 
 
         private void Awake()
         {
             SetLoadMenuButtonLock(true);
             loadDeckDropDownListener = new BasicDropDownListener(loadDeckDropdown, GetPlayerDeck);
-            
+            loadJsonFile = new LoadJsonFile();
+            saveJsonFile = new SaveJsonFile();
         }
 
         void GetPlayerDeck(int value)
@@ -27,18 +33,34 @@ namespace DeckBuilder
             if (value <= 0 || value >= 5) // If value is not 1-4
                 return;
 
-            LoadPlayerDeckJson(value);
+            LoadPlayerDeckByIndex(value);
             SetLoadMenuButtonLock(false);
             OnClickCloseLoadMenu();
-            Debug.Log(value);
+            
         }
 
-        void LoadPlayerDeckJson(int value)
+        void LoadPlayerDeckByIndex(int value)
         {
-
+            currentDeck = value;
+            CardData[] cards = loadJsonFile.LoadCardsData(value);
+            if (cards != null)
+                deckContentHandler.CreateAllCards(cards);
+            else
+                deckContentHandler.DeleteAllCards();
         }
 
+        public override void OnClickSaveDeck()
+        {
+            Debug.Log("Saving");
+            CardData[] cardData = deckContentHandler.GetAllCardData();
+            saveJsonFile.SaveAllCardData(currentDeck, cardData);
+        }
 
+        public override void OnClickOpenDataPathFolder()
+        {
+            string dataPath = Application.persistentDataPath;
+            System.Diagnostics.Process.Start(dataPath);
+        }
     }
 
     public class UIButtons: MonoBehaviour
@@ -69,7 +91,7 @@ namespace DeckBuilder
             LoadMenuCanvas.SetActive(showLoadUI);
         }
 
-        public void OnClickSaveDeck()
+        public virtual void OnClickSaveDeck()
         {
 
         }
@@ -78,6 +100,11 @@ namespace DeckBuilder
         {
             showLoadUI = !showLoadUI;
             LoadMenuCanvas.SetActive(showLoadUI);
+        }
+
+        public virtual void OnClickOpenDataPathFolder()
+        {
+
         }
     }
 

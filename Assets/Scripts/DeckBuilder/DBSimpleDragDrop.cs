@@ -58,7 +58,7 @@ namespace DeckBuilder
         public void OnEndDrag(PointerEventData eventData)
         {
             if (!isDeckCard && CurrentField == DeckField) // Add a new card to the deck
-                DeckField.GetComponent<DeckContentHandler>().AddCard(gameObject, GetComponent<InitCardPrefab>().GetElementID());
+                DeckField.GetComponent<DeckContentHandler>().AddCard(gameObject, GetComponent<InitCardPrefab>().GetElementID(), true);
 
             else if (isDeckCard && transform.localPosition.x > 300) // Delete card based on horizontal position
             {
