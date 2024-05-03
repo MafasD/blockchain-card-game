@@ -96,7 +96,7 @@ public class MainController : MonoBehaviour
 
         if (roundCount >= maxRoundCount) //If max roundCount reached, match ends
         {
-            EndMatch();
+            Invoke("EndMatch", 2f); //Calls EndMatch() after 2 second delay
             return;
         }
 

@@ -34,7 +34,7 @@ public class EnemyController : CardController
 
     public override void AddCardsToDiscardPile()
     {
-        MyField.GetComponent<FieldHandler>().RemoveCards();
+        MyField.GetComponent<FieldHandler>().RemoveCards(discardPile);
     }
 
     IEnumerator BotPlayStart() // Currently chooses random card from deck
