@@ -9,23 +9,24 @@ using UnityEngine.UIElements;
 
 namespace DeckBuilder
 {
-    public class UIController : UIButtons
+    public class DeckBuilderController : DeckBuilderButtons
     {
-        [SerializeField] DeckContentHandler deckContentHandler;
-        [SerializeField] TMP_Dropdown loadDeckDropdown;
-        BasicDropDownListener loadDeckDropDownListener;
-        LoadJsonFile loadJsonFile;
-        SaveJsonFile saveJsonFile;
-        
+        public DeckContentHandler deckContentHandler; // Handler for player's deck
+        public TMP_Dropdown loadDeckDropdown; // Unity Dropdown that contain player decks
+        public DrawText drawText;
+        JsonLoad loadJsonFile;
+        JsonSave saveJsonFile;
+        readonly DeckCountsData deckCountsData = new();
+        readonly float waitTime = 2f; // How many seconds to show info text in UI
         int currentDeck = 0;
 
 
         private void Awake()
         {
             SetLoadMenuButtonLock(true);
-            loadDeckDropDownListener = new BasicDropDownListener(loadDeckDropdown, GetPlayerDeck);
-            loadJsonFile = new LoadJsonFile();
-            saveJsonFile = new SaveJsonFile();
+            BasicDropDownListener listen = new BasicDropDownListener(loadDeckDropdown, GetPlayerDeck);
+            loadJsonFile = new JsonLoad();
+            saveJsonFile = new JsonSave();
         }
 
         void GetPlayerDeck(int value)
@@ -43,17 +44,26 @@ namespace DeckBuilder
         {
             currentDeck = value;
             CardData[] cards = loadJsonFile.LoadCardsData(value);
-            if (cards != null)
-                deckContentHandler.CreateAllCards(cards);
-            else
-                deckContentHandler.DeleteAllCards();
+
+            deckContentHandler.CreateAllCards(cards);
+
+            drawText.ShowInfoOnScreen($"Loaded from deck {currentDeck}", waitTime);
         }
+
 
         public override void OnClickSaveDeck()
         {
-            Debug.Log("Saving");
+            int count = deckContentHandler.GetTotalChildCount();
+
+            if (count < deckCountsData.GetMinCardsCount())
+            {
+                drawText.ShowInfoOnScreen("Not enough cards in your deck", waitTime);
+                return;
+            }
+
             CardData[] cardData = deckContentHandler.GetAllCardData();
             saveJsonFile.SaveAllCardData(currentDeck, cardData);
+            drawText.ShowInfoOnScreen($"Saved to deck {currentDeck}", waitTime);
         }
 
         public override void OnClickOpenDataPathFolder()
@@ -63,7 +73,7 @@ namespace DeckBuilder
         }
     }
 
-    public class UIButtons: MonoBehaviour
+    public class DeckBuilderButtons: MonoBehaviour
     {
         public GameObject LoadMenuCanvas;
         bool showLoadUI = false;
@@ -91,21 +101,15 @@ namespace DeckBuilder
             LoadMenuCanvas.SetActive(showLoadUI);
         }
 
-        public virtual void OnClickSaveDeck()
-        {
-
-        }
-
         public void OnClickLoadDeck()
         {
             showLoadUI = !showLoadUI;
             LoadMenuCanvas.SetActive(showLoadUI);
         }
 
-        public virtual void OnClickOpenDataPathFolder()
-        {
+        public virtual void OnClickSaveDeck() { }
 
-        }
+        public virtual void OnClickOpenDataPathFolder() { }
     }
 
 }

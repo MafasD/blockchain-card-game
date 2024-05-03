@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SaveJsonFile
+// Class for saving cards to json format to the persistent data path.
+public class JsonSave
 {
-    List<CardData> cardDatas;
-    string dataPath;
+    readonly string dataPath;
 
-    public SaveJsonFile()
+    public JsonSave()
     {
         dataPath = Application.persistentDataPath + "/";
     }
@@ -21,13 +21,6 @@ public class SaveJsonFile
 
         File.WriteAllText(filePath, saveJson);
 
-        Debug.Log("Card data saved succesfully!");
-
     }
 
-    private void SaveCard(CardData cardData, string path)
-    {
-        string savePlayerData = JsonUtility.ToJson(cardData);
-        File.WriteAllText(dataPath, savePlayerData);
-    }
 }

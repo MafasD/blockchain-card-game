@@ -3,39 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class LoadJsonFile
+// Class for loading cards from the json file located in the persistent data path.
+public class JsonLoad
 {
-    List<CardData> cards;
+    // Root where the file is located in the disk
     string dataPath;
 
-    public LoadJsonFile()
+    // Constructor that sets the data path.
+    public JsonLoad()
     {
         dataPath = Application.persistentDataPath + "/";
     }
 
+    // Loads player's card data based on the deck index number.
+    // Returns an array of class.
     public CardData[] LoadCardsData(int deckIndex)
     {
         string file = $"Deck{deckIndex}.json";
 
+        // Checks if file do exists
         if (!File.Exists(dataPath + file))
         {
             Debug.Log($"{file} was not loaded - File does not exist");
             return null;
         }
-
+        // Reads the data as a text/string
         string data = File.ReadAllText(dataPath + file);
+        // Create JSON array that holds the card data.
         CardData[] jsonData = JsonHelper.FromJson<CardData>(data);
-        Debug.Log(jsonData.Length);
-
-        //string saveJson = JsonHelper.FromJson(data);
 
         return jsonData;
     }
 
-    private CardData LoadCardData()
-    {
-
-
-        return new CardData();
-    }
 }
