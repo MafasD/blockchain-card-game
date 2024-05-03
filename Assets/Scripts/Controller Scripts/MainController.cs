@@ -19,6 +19,8 @@ public class MainController : MonoBehaviour
     public Image opponentHealthBar;
     public float damagePercentage = 0.1f; //0.1f = 10% damage. This can be adjusted in the MainController's inspector window
 
+    public int maxRoundCount = 30; //Max round count for the match
+
     void Awake()
     {
         CurrentController = PlayerController; // Player starts the game
@@ -92,6 +94,12 @@ public class MainController : MonoBehaviour
             DamagePlayer(); //Player loses = player takes damage
         }
 
+        if (roundCount >= maxRoundCount) //If max roundCount reached, match ends
+        {
+            Invoke("EndMatch", 2f); //Calls EndMatch() after 2 second delay
+            return;
+        }
+
         StartCoroutine(IEStartNewRound());
     }
     //Method for damaging player
@@ -123,7 +131,22 @@ public class MainController : MonoBehaviour
             }
         }
     }
-
+    //Match end method for max round reached. Based on remaining health, match can end in a win, loss or draw
+    void EndMatch()
+    {
+        if (playerHealthBar.fillAmount > opponentHealthBar.fillAmount)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+        else if (playerHealthBar.fillAmount < opponentHealthBar.fillAmount)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("DrawScene");
+        }
+    }
 
     IEnumerator IEStartNewRound() // Coroutine for waiting a little before sending cards to discard pile
     {
