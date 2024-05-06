@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeckBuilderScene.unity
     guid: b8a486fd3c37e1245ae6f5dffdb1b591
+  - enabled: 1
+    path: Assets/Scenes/DrawScene.unity
+    guid: 302965bf7132a88499ff19b7eff2df09
   m_configObjects: {}

@@ -34,15 +34,29 @@ public class FieldHandler : MonoBehaviour
             transform.GetChild(i).GetComponent<InitCardPrefab>().SetCardVisibleToOthers();
         }
     }
-
-    public void RemoveCards() // This method deletes all the cards -> for future updates move cards to the discard pile
-    {
-
-        int childCount = transform.childCount;
-        for (int i = 0; i < childCount; i++)
+    /*
+        public void RemoveCards() // This method deletes all the cards -> for future updates move cards to the discard pile
         {
-            Destroy(transform.GetChild(i).gameObject); // Destroys game objects completely (current build supports only 1 child)
+
+            int childCount = transform.childCount;
+            for (int i = 0; i < childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject); // Destroys game objects completely (current build supports only 1 child)
+            }
+
         }
-            
+    */
+
+    public void RemoveCards(Transform discardPile) //Moves cards to the discard pile
+    {
+        //Loops through all child objects (cards) in the field
+        foreach (Transform child in transform)
+        {
+            //Moves the card to the discard pile
+            child.SetParent(discardPile);
+            //Reset card's local position and rotation
+            child.localPosition = Vector3.zero; //Sets card position to (0,0,0) inside discard pile
+            child.localRotation = Quaternion.identity; //Resets card rotation, making enemycards appear upside down, inside discard pile
+        }
     }
 }
