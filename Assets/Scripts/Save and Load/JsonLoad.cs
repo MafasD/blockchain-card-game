@@ -21,12 +21,10 @@ public class JsonLoad
     {
         string file = $"Deck{deckIndex}.json";
 
-        // Checks if file do exists
-        if (!File.Exists(dataPath + file))
-        {
-            Debug.Log($"{file} was not loaded - File does not exist");
+        // Checks if file do not exists
+        if (!CheckIfJsonSaveExists(deckIndex))
             return null;
-        }
+
         // Reads the data as a text/string
         string data = File.ReadAllText(dataPath + file);
         // Create JSON array that holds the card data.
@@ -35,4 +33,13 @@ public class JsonLoad
         return jsonData;
     }
 
+    public bool CheckIfJsonSaveExists(int deckIndex)
+    {
+        string file = $"Deck{deckIndex}.json";
+
+        if (File.Exists(dataPath + file))
+            return true;
+
+        return false;
+    }
 }
