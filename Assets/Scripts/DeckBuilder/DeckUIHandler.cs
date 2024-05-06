@@ -10,6 +10,7 @@ namespace DeckBuilder {
         [SerializeField] TMP_Text totalCount;
         [SerializeField] TMP_Text screenInfo;
         [SerializeField] DeckContentHandler playerDeckHandler;
+        [SerializeField] DrawText drawText;
         readonly DeckCountsData deckCountsData = new();
 
         private void Awake()
@@ -53,6 +54,11 @@ namespace DeckBuilder {
             }
 
             UpdateTotalCardCount(0);
+        }
+
+        public void ShowCardWasDeletedInfo()
+        {
+            drawText.ShowInfoOnScreen("Card deleted from the deck", 2f);
         }
 
     }

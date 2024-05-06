@@ -29,6 +29,11 @@ namespace DeckBuilder
             saveJsonFile = new JsonSave();
         }
 
+        public void CardWasDeleted()
+        {
+
+        }
+
         void GetPlayerDeck(int value)
         {
             if (value <= 0 || value >= 5) // If value is not 1-4

@@ -149,6 +149,7 @@ namespace DeckBuilder
             totalCardCount--;
             UpdateCardCountByElementID(elementID, cardCounts[elementID]);
             UpdateTotalCardCount(totalCardCount);
+            ShowCardWasDeletedInfo();
         }
 
         // Destoys all the childs that elementParents have.

@@ -692,6 +692,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &199520056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 199520057}
+  - component: {fileID: 199520058}
+  m_Layer: 0
+  m_Name: DrawText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &199520057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199520056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 477520457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &199520058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199520056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b335546dfa2a4674baa3b103465a94f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenInfo: {fileID: 1014027947}
+  background: {fileID: 504127495}
 --- !u!1 &266159795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,7 +1839,6 @@ GameObject:
   m_Component:
   - component: {fileID: 477520457}
   - component: {fileID: 477520458}
-  - component: {fileID: 477520459}
   m_Layer: 0
   m_Name: Controller
   m_TagString: MainController
@@ -1813,7 +1858,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 199520057}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &477520458
@@ -1831,21 +1877,7 @@ MonoBehaviour:
   LoadMenuCanvas: {fileID: 869968314}
   deckContentHandler: {fileID: 890677203}
   loadDeckDropdown: {fileID: 1727566359}
-  drawText: {fileID: 477520459}
---- !u!114 &477520459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477520456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b335546dfa2a4674baa3b103465a94f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  screenInfo: {fileID: 1014027947}
-  background: {fileID: 504127495}
+  drawText: {fileID: 199520058}
 --- !u!1 &504127493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1914,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 218.1, y: 30.25}
+  m_SizeDelta: {x: 102.6, y: 16.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &504127495
 MonoBehaviour:
@@ -3256,6 +3288,7 @@ MonoBehaviour:
   totalCount: {fileID: 983784046}
   screenInfo: {fileID: 1014027947}
   playerDeckHandler: {fileID: 0}
+  drawText: {fileID: 199520058}
   deckBuilderController: {fileID: 477520458}
   simpleCardPrefab: {fileID: 2473393469786290536, guid: bb8e21bdb7c998c4f88a6009be6c57b9, type: 3}
 --- !u!114 &890677204
@@ -3752,7 +3785,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 286.3, y: 186.72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1005212471
@@ -3915,8 +3948,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 8.49
+  m_fontSizeBase: 8.49
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4637,7 +4670,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 722945836}
   m_Direction: 3
   m_Value: 0
-  m_Size: 0.99939406
+  m_Size: 0.9999896
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

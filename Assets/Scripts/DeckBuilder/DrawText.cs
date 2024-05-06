@@ -12,6 +12,12 @@ public class DrawText : MonoBehaviour
     public TMP_Text screenInfo;
     public Image background;
 
+    private void Awake()
+    {
+        screenInfo.text = string.Empty;
+        background.gameObject.SetActive(false);
+    }
+
     public void ShowInfoOnScreen(string infoText, float seconds)
     {
         StartCoroutine(ShowScreenInfoText(infoText, seconds));
