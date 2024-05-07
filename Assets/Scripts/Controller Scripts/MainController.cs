@@ -150,7 +150,7 @@ public class MainController : MonoBehaviour
 
     IEnumerator IEStartNewRound() // Coroutine for waiting a little before sending cards to discard pile
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         PlayerController.AddCardsToDiscardPile();
         EnemyController.AddCardsToDiscardPile();
         testInfoTMP.text = "";

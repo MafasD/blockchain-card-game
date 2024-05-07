@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerController : CardController
 {
     bool isPlayersTurn = true; // Flag checking if it's players turn
+    private void Awake()
+    {
+        if (animationManager == null)
+            animationManager = GetComponent<PlayerAnimationManager>();
+    }
+
     public override void MyTurn()
     {
         isPlayersTurn = true;
@@ -17,7 +23,7 @@ public class PlayerController : CardController
 
     public override void AddCardsToDiscardPile()
     {
-        MyField.GetComponent<FieldHandler>().RemoveCards();
+        animationManager.SendCardToDiscardPile();
     }
 
     public void SetIsPlayersTurn(bool isPlayersTurn)

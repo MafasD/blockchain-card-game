@@ -10,6 +10,9 @@ public class EnemyController : CardController
 
     private void Awake()
     {
+        if(animationManager == null)
+            animationManager = GetComponent<EnemyAnimationManager>();
+
         Bot = new SimpleBot(MyHandCards); // Creates a bot
     }
 
@@ -27,14 +30,11 @@ public class EnemyController : CardController
         botTurn = true;
     }
 
-    public override void EndOfMyTurn()
-    {
-
-    }
+    public override void EndOfMyTurn() { }
 
     public override void AddCardsToDiscardPile()
     {
-        MyField.GetComponent<FieldHandler>().RemoveCards();
+        animationManager.SendCardToDiscardPile();
     }
 
     IEnumerator BotPlayStart() // Currently chooses random card from deck
@@ -46,7 +46,8 @@ public class EnemyController : CardController
         
         //Sets the card's scale to 1.2x, because for some reason the OpponentHand affects the scaling.
         pickACard.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-        MyField.GetComponent<FieldHandler>().AddCard(pickACard); // Adds card manually to the field
+
+        animationManager.SendCardToMyField(pickACard);
 
     }
 

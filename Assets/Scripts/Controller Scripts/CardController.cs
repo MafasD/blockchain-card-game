@@ -6,6 +6,8 @@ using UnityEngine;
 
 public abstract class CardController : MonoBehaviour
 {
+    public AnimationManager animationManager; // Handles Unity animations.
+
     public GameObject MyField; // My field parent object where cards are dropped; My hand cards parent object
 
     public abstract void MyTurn(); // Called when turn starts

@@ -130,8 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementID: 0
   elementObj: {fileID: 1553561389816142077}
-  frontside: {fileID: 7732468125906766794}
-  backside: {fileID: 4025628579619640368}
   elementIcons:
   - {fileID: 21300000, guid: 453e28e303d571f46bf8c4d43ad1a072, type: 3}
   - {fileID: 21300000, guid: 78d556715f98a41449a85cf44eb5675e, type: 3}
@@ -712,7 +710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1860659545, guid: f1291dd7e8e59ce4c9124b0a6e0c8661, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a536a5efcf306c045b9dde3ce1611315, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
