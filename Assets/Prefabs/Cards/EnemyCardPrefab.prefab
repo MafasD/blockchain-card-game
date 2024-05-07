@@ -85,7 +85,6 @@ GameObject:
   m_Component:
   - component: {fileID: 972851393182501797}
   - component: {fileID: 4966808444700955400}
-  - component: {fileID: 2231830320135231322}
   m_Layer: 5
   m_Name: EnemyCardPrefab
   m_TagString: Untagged
@@ -127,28 +126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementID: 0
-  showInfoText: 1
   elementObj: {fileID: 1553561389816142077}
+  frontside: {fileID: 7158666551755417633}
+  backside: {fileID: 3997030946264382379}
   elementIcons:
   - {fileID: 21300000, guid: 453e28e303d571f46bf8c4d43ad1a072, type: 3}
   - {fileID: 21300000, guid: 78d556715f98a41449a85cf44eb5675e, type: 3}
   - {fileID: 21300000, guid: 1f800dea4d3e86c4ebab363f42ff3d4b, type: 3}
   nameTMP: {fileID: 1744673241529973507}
   infoTMP: {fileID: 5171905507166071950}
---- !u!114 &2231830320135231322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2473393469786290536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 451138ddc63884b47957f476bb2da468, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Frontside: {fileID: 7158666551755417633}
-  Backside: {fileID: 3997030946264382379}
+  showInfoText: 1
+  isEnemyCard: 1
 --- !u!1 &3544767473351539205
 GameObject:
   m_ObjectHideFlags: 0

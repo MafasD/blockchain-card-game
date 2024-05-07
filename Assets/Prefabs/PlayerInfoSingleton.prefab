@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 697604738876289657}
   - component: {fileID: 204847141773598128}
   m_Layer: 0
-  m_Name: PlayerDeckSingleton
-  m_TagString: PlayerDeckSingleton
+  m_Name: PlayerInfoSingleton
+  m_TagString: PlayerInfoSingleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8310796050932799015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c37b1e8e79e6f1c4397cf0b3b0331bb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 593c71c41f39fb14396e0e75e3dd44c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeckId: 0

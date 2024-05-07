@@ -8,8 +8,6 @@ public abstract class CardController : MonoBehaviour
 {
     public GameObject MyField; // My field parent object where cards are dropped; My hand cards parent object
 
-    public Transform discardPile; //Reference to the discard pile
-
     public abstract void MyTurn(); // Called when turn starts
 
     public abstract void EndOfMyTurn(); // Called when turn starts (player)

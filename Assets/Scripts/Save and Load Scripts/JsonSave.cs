@@ -11,9 +11,11 @@ public class JsonSave
 
     public JsonSave()
     {
-        dataPath = Application.persistentDataPath + "/";
+        dataPath = Application.persistentDataPath + "/"; // Common root folder for saving data in the disk.
     }
 
+    // Converts CardData array to JSON format and saves it.
+    // Filename will be based on the deckIndex.
     public void SaveAllCardData(int deckIndex, CardData[] cardData)
     {
         string filePath = dataPath + $"Deck{deckIndex}.json";

@@ -4,24 +4,28 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Script for the card prefab
-// elementID determines which type of element the card is
+// Script for the player and enemy card prefabs.
+// elementID determines which type of element the card is.
 public class InitCardPrefab : MonoBehaviour
 {
     [SerializeField] int elementID; // 0 = water, 1 = fire, 2 = leaf
-    [SerializeField] bool showInfoText = true; // Text info can be set hidden from the editor
-    [SerializeField] GameObject elementObj;
+    [SerializeField] GameObject elementObj; // Child object where the element icon/art is located.
     [SerializeField] Sprite[] elementIcons; // Sprite array of the elements: 0 = water, 1 = fire, 2 = leaf
     [SerializeField] TMP_Text nameTMP, infoTMP; // Card name and info
+    [SerializeField] bool showInfoText = true; // Text info can be set hidden from the editor
+    [SerializeField] bool isEnemyCard;
 
     private void Awake()
     {
         elementObj.GetComponent<Image>().sprite = elementIcons[elementID]; // Change icon sprite by id
-        SetIconInfo();
-        
-    }
+        transform.GetChild(0).gameObject.SetActive(isEnemyCard); // Backside of the card -> show if is enemy.
+        transform.GetChild(1).gameObject.SetActive(!isEnemyCard); // Frontside of the card -> hide if is enemy.
 
-    private void SetIconInfo()
+        SetBasicIconInfo(); // Quick demonstration method for the card style.
+
+    }
+    // Sets the card information based on the element id.
+    private void SetBasicIconInfo()
     {
         string name, info;
         if(elementID == 0) // Water element
@@ -58,13 +62,13 @@ public class InitCardPrefab : MonoBehaviour
     {
         elementID = id;
         elementObj.GetComponent<Image>().sprite = elementIcons[elementID]; // Change icon sprite by id
-        SetIconInfo();
+        SetBasicIconInfo();
     }
 
     public void SetCardVisibleToOthers()
     {
-        transform.GetChild(0).gameObject.SetActive(false);
-        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(false); // Set backside of the card not visible.
+        transform.GetChild(1).gameObject.SetActive(true); // Set frontside of the card visible.
     }
 
 }

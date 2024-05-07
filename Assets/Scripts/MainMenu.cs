@@ -12,13 +12,12 @@ public class MainMenu : MonoBehaviour
         DeckSelectCanvas.enabled = false;
     }
 
-    // Start is called before the first frame update
+
     public void StartGame()
     {
-        DeckSelectCanvas.enabled = true;
+        DeckSelectCanvas.enabled = true; // Opens a little popup UI for the deck selection.
     }
 
-    // Update is called once per frame
     public void ExitGame()
     {
         Application.Quit();

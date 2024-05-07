@@ -129,14 +129,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementID: 0
-  showInfoText: 1
   elementObj: {fileID: 1553561389816142077}
+  frontside: {fileID: 7732468125906766794}
+  backside: {fileID: 4025628579619640368}
   elementIcons:
   - {fileID: 21300000, guid: 453e28e303d571f46bf8c4d43ad1a072, type: 3}
   - {fileID: 21300000, guid: 78d556715f98a41449a85cf44eb5675e, type: 3}
   - {fileID: 21300000, guid: 1f800dea4d3e86c4ebab363f42ff3d4b, type: 3}
   nameTMP: {fileID: 1744673241529973507}
   infoTMP: {fileID: 5171905507166071950}
+  showInfoText: 1
+  isEnemyCard: 0
 --- !u!61 &102646723539231711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221,10 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155e57de8de47134c9c2aa0aa29b0e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeckField: {fileID: 0}
-  CurrentField: {fileID: 0}
-  ParentObj: {fileID: 0}
-  MainCanvas: {fileID: 0}
 --- !u!1 &3544767473351539205
 GameObject:
   m_ObjectHideFlags: 0

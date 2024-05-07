@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Keeps track what player deck is selected.
+// Keeps track which player deck is selected.
 // Saved json file will be loaded based on the playerDeckId value.
 
-public class PlayerDeckSingleton : MonoBehaviour
+public class PlayerInfoSingleton : MonoBehaviour
 {
-    public static PlayerDeckSingleton instance;
-    public int playerDeckId;
+    public static PlayerInfoSingleton instance;
+    [SerializeField] int playerDeckId;
 
     private void Awake()
     {
-        // If instance do not exist set this object singleton
-        // Else destroy this object
+        // If this instance do not exist -> make it singleton.
+        // Else destroy this object on awake.
 
         if (instance == null)
         {
@@ -24,11 +24,13 @@ public class PlayerDeckSingleton : MonoBehaviour
             Destroy(this);
     }
 
+    // Sets the player's deck by index/id that can be loaded on the GameScene.
     public void SetPlayerDeckID(int id)
     {
         instance.playerDeckId = id;
     }
 
+    // Used to get the current player's deck by index/id.
     public int GetPlayerDeckId()
     {
         return instance.playerDeckId;

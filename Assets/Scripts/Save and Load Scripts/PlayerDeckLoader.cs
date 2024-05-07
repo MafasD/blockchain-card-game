@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Loads deck from JSON file and converts it to Game Object.
+// Loads a simple deck if JSON file is not found.
+
 public class PlayerDeckLoader : MonoBehaviour
 {
     public GameObject playerDeck;
@@ -13,11 +16,12 @@ public class PlayerDeckLoader : MonoBehaviour
     {
         jsonLoad = new JsonLoad();
         // Gets ID for which deck will be loaded.
-        int playerDeckId = PlayerDeckSingleton.instance.GetPlayerDeckId();
+        int playerDeckId = PlayerInfoSingleton.instance.GetPlayerDeckId();
 
         // Checks if JSON file exists in the persistent data path.
         if (!jsonLoad.CheckIfJsonSaveExists(playerDeckId))
         {
+            Debug.Log($"Player deck {playerDeckId} was not found.");
             CreateBasicPlayerDeck();
             return;
         }
@@ -42,10 +46,10 @@ public class PlayerDeckLoader : MonoBehaviour
         }
 
         playerDeck.GetComponent<DeckManager>().SetDeckCards(cards);
-        Debug.Log($"Player deck {deckIndex} loaded from Json file");
+        Debug.Log($"Player deck {deckIndex} loaded from Json file.");
     }
 
-    // Creates a List of basic cards. (hard coded)
+    // Creates a basic List of cards.
     // Sends the List to the player's DeckManager.
     private void CreateBasicPlayerDeck()
     {
@@ -64,7 +68,7 @@ public class PlayerDeckLoader : MonoBehaviour
         }
         
         playerDeck.GetComponent<DeckManager>().SetDeckCards(cards);
-        Debug.Log("Basic player deck loaded");
+        Debug.Log("Basic player deck loaded.");
     }
 
 }
