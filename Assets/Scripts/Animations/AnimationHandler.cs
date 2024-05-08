@@ -9,6 +9,7 @@ public class AnimationHandler : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("Getting animator");
         animator = GetComponent<Animator>();
     }
 
