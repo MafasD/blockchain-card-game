@@ -9,6 +9,8 @@ TagManager:
   - PlayerController
   - EnemyController
   - MainController
+  - MainCanvas
+  - PlayerInfoSingleton
   layers:
   - Default
   - TransparentFX

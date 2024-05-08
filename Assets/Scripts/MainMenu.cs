@@ -5,16 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void StartGame()
+    public Canvas DeckSelectCanvas;
+
+    private void Awake()
     {
-        SceneManager.LoadScene("GameScene");
+        DeckSelectCanvas.enabled = false;
     }
 
-    // Update is called once per frame
+
+    public void StartGame()
+    {
+        DeckSelectCanvas.enabled = true; // Opens a little popup UI for the deck selection.
+    }
+
     public void ExitGame()
     {
         Application.Quit();
     }
 
+    public void OpenDeckBuilder()
+    {
+        SceneManager.LoadScene("DeckBuilderScene");
+    }
 }

@@ -8,6 +8,12 @@ public class DeckManager : MonoBehaviour
     public Transform hand; //Reference to the player's or opponent's hand
     public DeckController deckController; //Reference to the DeckController
 
+    // This method is called when the deck is loaded by a script.
+    public void SetDeckCards(List<GameObject> deck)
+    {
+        this.deck = deck;
+    }
+
     //Method for drawing cards from decks
     public void DrawCard(int count)
     {

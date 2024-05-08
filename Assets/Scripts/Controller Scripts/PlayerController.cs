@@ -17,7 +17,7 @@ public class PlayerController : CardController
 
     public override void AddCardsToDiscardPile()
     {
-        MyField.GetComponent<FieldHandler>().RemoveCards(discardPile);
+        MyField.GetComponent<FieldHandler>().RemoveCards();
     }
 
     public void SetIsPlayersTurn(bool isPlayersTurn)
