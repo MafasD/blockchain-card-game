@@ -30,6 +30,11 @@ public class AnimationHandler : MonoBehaviour
 
     public void AnimationEventTriggerToDiscardPile() // Call from the EnemyCardsToDiscardPile animation event.
     {
+        animationManager.AnimationTriggerToDiscardPile(); // Mid section event trigger when animation is still running.
+    }
+
+    public void AnimationEndEventTriggerToDiscardPile() // Final event trigger when animation is fully played.
+    {
         animationManager.AnimationEndToDiscardPile();
     }
 

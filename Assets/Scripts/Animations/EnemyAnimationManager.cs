@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyAnimationManager : AnimationManager
 {
-    public override string SetMyField()
+    public override GameObject SetMyField()
     {
-        return "EnemyField";
+        return GameObject.FindWithTag("EnemyField");
     }
 
     public override void SendCardToMyField(GameObject myCard)
@@ -20,6 +20,7 @@ public class EnemyAnimationManager : AnimationManager
 
     public override void AnimationEndDrawCard()
     {
+        cardController.SetIsAnimationRunning(false);
         MyField.GetComponent<FieldHandler>().AddCard(MyCard); // Adds card manually to the field
     }
 

@@ -23,19 +23,20 @@ public class PlayerController : CardController
 
     public override void AddCardsToDiscardPile()
     {
-        if(showAnimations)
+        if (showAnimations)
+        {
+            isAnimationRunning = true;
             animationManager.SendCardToDiscardPile();
+        }
         else
             MyField.GetComponent<FieldHandler>().RemoveCards();
     }
 
-    public void SetIsPlayersTurn(bool isPlayersTurn)
-    {
-        this.isPlayersTurn = isPlayersTurn;
-    }
-
     public bool CheckIfPlayersTurn() // Getter for player's turn flag (used in DragDropV2.cs)
     {
+        if (isAnimationRunning)
+            return false;
+
         return isPlayersTurn;
     }
 

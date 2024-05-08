@@ -12,6 +12,8 @@ public abstract class CardController : MonoBehaviour
 
     protected bool showAnimations = true; // Flag for showing card animations.
 
+    protected bool isAnimationRunning = false; // Flag for informing if the animation is running. (Works only if showAnimations is active)
+
     public abstract void MyTurn(); // Called when turn starts
 
     public abstract void EndOfMyTurn(); // Called when turn starts (player)
@@ -26,6 +28,11 @@ public abstract class CardController : MonoBehaviour
     public Card GetMyCard() // Get card information as a Card object (class)
     {
         return MyField.GetComponent<FieldHandler>().GetCard();
+    }
+
+    public void SetIsAnimationRunning(bool isAnimationRunning) // Setter for animation is running flag -> Called from the AnimationManager.
+    {
+        this.isAnimationRunning = isAnimationRunning;
     }
 
 }

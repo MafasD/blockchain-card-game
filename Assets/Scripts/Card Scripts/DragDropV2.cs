@@ -49,11 +49,11 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     //Called when dragging of the card starts.
     public void OnBeginDrag(PointerEventData eventData)
     {
+        startPosition = transform.localPosition;
         bool isPlayersTurn = PlayerController.GetComponent<PlayerController>().CheckIfPlayersTurn();
         if (isPlaced || !isPlayersTurn) // Only allows dragging if the card hasn't been placed, so once it's on the field we can't move it anymore.
             return;
 
-        startPosition = transform.localPosition;
         isDragging = true;
     }
 

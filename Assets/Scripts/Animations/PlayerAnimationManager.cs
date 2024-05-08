@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerAnimationManager : AnimationManager
 {
-    public override string SetMyField()
+    public override GameObject SetMyField()
     {
-        return "PlayerField";
+        return GameObject.FindWithTag("PlayerField");
     }
 
     public override void SendCardToDiscardPile()
@@ -17,4 +17,8 @@ public class PlayerAnimationManager : AnimationManager
         animHandler.PlayMoveToDiscardPile();
     }
 
+    public override void AnimationEndDrawCard()
+    {
+        cardController.SetIsAnimationRunning(false);
+    }
 }

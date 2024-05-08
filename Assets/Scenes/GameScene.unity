@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationManager: {fileID: 237390616}
   MyField: {fileID: 276299006}
-  MyHandCards: {fileID: 930964955}
+  myHandCards: {fileID: 930964955}
 --- !u!114 &237390616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1722,7 +1722,6 @@ MonoBehaviour:
   - {fileID: 1723101132}
   hand: {fileID: 930964956}
   deckController: {fileID: 1482339216}
-  animationParent: {fileID: 792973153}
 --- !u!224 &354322282
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2284,7 +2283,6 @@ MonoBehaviour:
   - {fileID: 1874412554}
   hand: {fileID: 930964956}
   deckController: {fileID: 1482339216}
-  animationParent: {fileID: 792973153}
 --- !u!1001 &608903886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3500,11 +3498,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 792973154}
-  - component: {fileID: 792973156}
   - component: {fileID: 792973157}
-  - component: {fileID: 792973158}
+  - component: {fileID: 792973156}
   m_Layer: 5
-  m_Name: EnemyAnimationParent
+  m_Name: EnemyAnimationParent(handler)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3526,7 +3523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -123, y: 420}
+  m_AnchoredPosition: {x: 51.39999, y: 80.599976}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &792973156
@@ -3563,22 +3560,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!111 &792973158
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792973153}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: de159435d8430c54f988c9b55323d89d, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: e77180b646d9ebf4a82d3b02f255c43e, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &804421891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5199,7 +5180,6 @@ MonoBehaviour:
   deck: []
   hand: {fileID: 385449525}
   deckController: {fileID: 1482339216}
-  animationParent: {fileID: 1267051982}
 --- !u!224 &1152790748
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5596,7 +5576,7 @@ GameObject:
   - component: {fileID: 1267051985}
   - component: {fileID: 1267051986}
   m_Layer: 5
-  m_Name: PlayerAnimationParent
+  m_Name: PlayerAnimationParent(handler)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8167,7 +8147,6 @@ MonoBehaviour:
   - {fileID: 925580987}
   hand: {fileID: 930964956}
   deckController: {fileID: 1482339216}
-  animationParent: {fileID: 792973153}
 --- !u!1 &1764059600 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2473393469786290536, guid: 36730b63d590a044a8ed6efbedd672a2, type: 3}
