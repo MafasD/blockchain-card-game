@@ -9,10 +9,6 @@ public class PlayerAnimationManager : AnimationManager
         return "PlayerField";
     }
 
-    public override void SendCardToMyField(GameObject myCard) { }
-
-    public override void AnimationEndDrawCard() { }
-
     public override void SendCardToDiscardPile()
     {
         MyCard = MyField.transform.GetChild(0).gameObject;
@@ -20,4 +16,5 @@ public class PlayerAnimationManager : AnimationManager
         MyCard.transform.position = MyField.transform.position;
         animHandler.PlayMoveToDiscardPile();
     }
+
 }

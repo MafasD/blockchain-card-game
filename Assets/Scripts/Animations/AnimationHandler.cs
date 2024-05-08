@@ -9,7 +9,6 @@ public class AnimationHandler : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Getting animator");
         animator = GetComponent<Animator>();
     }
 
@@ -19,7 +18,7 @@ public class AnimationHandler : MonoBehaviour
 
     }
     
-    public void AnimationEndsDrawCard() // Called from the EnemyDrawCard animation event.
+    public void AnimationEventTriggerDrawCard() // Called from the EnemyDrawCard animation event.
     {
         animationManager.AnimationEndDrawCard();
     }
@@ -29,8 +28,9 @@ public class AnimationHandler : MonoBehaviour
         animator.SetTrigger("ToDiscardPile");
     }
 
-    public void AnimationEndsToDiscardPile() // Call from the EnemyCardsToDiscardPile animation event.
+    public void AnimationEventTriggerToDiscardPile() // Call from the EnemyCardsToDiscardPile animation event.
     {
         animationManager.AnimationEndToDiscardPile();
     }
+
 }

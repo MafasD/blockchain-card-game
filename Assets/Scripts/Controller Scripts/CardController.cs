@@ -10,6 +10,8 @@ public abstract class CardController : MonoBehaviour
 
     public GameObject MyField; // My field parent object where cards are dropped; My hand cards parent object
 
+    protected bool showAnimations = true; // Flag for showing card animations.
+
     public abstract void MyTurn(); // Called when turn starts
 
     public abstract void EndOfMyTurn(); // Called when turn starts (player)
@@ -20,6 +22,7 @@ public abstract class CardController : MonoBehaviour
     {
         MyField.GetComponent<FieldHandler>().RevealCards();
     }
+
     public Card GetMyCard() // Get card information as a Card object (class)
     {
         return MyField.GetComponent<FieldHandler>().GetCard();

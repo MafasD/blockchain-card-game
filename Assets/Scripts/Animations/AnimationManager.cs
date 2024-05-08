@@ -17,11 +17,12 @@ public abstract class AnimationManager : MonoBehaviour
 
     public abstract string SetMyField();
 
-    public abstract void SendCardToMyField(GameObject myCard);
-
-    public abstract void AnimationEndDrawCard();
-
     public abstract void SendCardToDiscardPile();
+
+    public virtual void SendCardToMyField(GameObject myCard) { }
+
+    public virtual void AnimationEndDrawCard() { }
+
 
     public void AnimationEndToDiscardPile()
     {

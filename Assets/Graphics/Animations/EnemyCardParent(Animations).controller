@@ -61,7 +61,7 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8069059482445823154}
-    m_Position: {x: 300, y: -20, z: 0}
+    m_Position: {x: 330, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4791904116807281995}
     m_Position: {x: 30, y: -180, z: 0}
@@ -91,6 +91,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: ToDiscardPile
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: RevealCard
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0

@@ -7,7 +7,7 @@ public class PlayerController : CardController
     bool isPlayersTurn = true; // Flag checking if it's players turn
     private void Awake()
     {
-        if (animationManager == null)
+        if (animationManager == null && showAnimations)
             animationManager = GetComponent<PlayerAnimationManager>();
     }
 
@@ -23,7 +23,10 @@ public class PlayerController : CardController
 
     public override void AddCardsToDiscardPile()
     {
-        animationManager.SendCardToDiscardPile();
+        if(showAnimations)
+            animationManager.SendCardToDiscardPile();
+        else
+            MyField.GetComponent<FieldHandler>().RemoveCards();
     }
 
     public void SetIsPlayersTurn(bool isPlayersTurn)
