@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38, y: 76}
-  m_SizeDelta: {x: 25, y: 25}
+  m_AnchoredPosition: {x: 0.3, y: 47.9}
+  m_SizeDelta: {x: 100, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3950929774415557797
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 78d556715f98a41449a85cf44eb5675e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22c5ff31dca49cc4287be46f39733cb0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -132,9 +132,9 @@ MonoBehaviour:
   showInfoText: 1
   elementObj: {fileID: 1553561389816142077}
   elementIcons:
-  - {fileID: 21300000, guid: 453e28e303d571f46bf8c4d43ad1a072, type: 3}
-  - {fileID: 21300000, guid: 78d556715f98a41449a85cf44eb5675e, type: 3}
-  - {fileID: 21300000, guid: 1f800dea4d3e86c4ebab363f42ff3d4b, type: 3}
+  - {fileID: 21300000, guid: 67e8277426e031d4fac5ad1a78695576, type: 3}
+  - {fileID: 21300000, guid: 22c5ff31dca49cc4287be46f39733cb0, type: 3}
+  - {fileID: 21300000, guid: 6fb33a7021893ff488259aef4322fcae, type: 3}
   nameTMP: {fileID: 1744673241529973507}
   infoTMP: {fileID: 5171905507166071950}
 --- !u!114 &276032967175729172
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1640375749, guid: 50adc422cb33c8549b13212ebfa91957, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7cd78e12468f081438857d8e4b97c70b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -371,7 +371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.5, y: -56}
+  m_AnchoredPosition: {x: -0.3, y: -73.1}
   m_SizeDelta: {x: 92, y: 56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7354179624090704443
@@ -406,8 +406,8 @@ MonoBehaviour:
 
     Effect: Deals +1 water damage'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b54f3784fa9ef66459cdc4dee9faeb82, type: 2}
+  m_sharedMaterial: {fileID: 6206736958649414626, guid: b54f3784fa9ef66459cdc4dee9faeb82, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -431,13 +431,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 17.899168}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -507,7 +507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0.3, y: -19.4}
   m_SizeDelta: {x: 100, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &310351566319776544
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -699250982, guid: 50adc422cb33c8549b13212ebfa91957, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14735b0bcbddffd4ab09bd43a81697bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
