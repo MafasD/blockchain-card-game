@@ -6,20 +6,29 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsParent;
-    private bool settingsOn = false;
 
-    public void OnClickToggleSettings()
+    private void Awake()
     {
-        settingsOn = !settingsOn;
-        settingsParent.SetActive(settingsOn);
+        settingsParent.SetActive(false); // Hide the settings at the start.
     }
-    // Start is called before the first frame update
+
+    public void OpenSettingsWindow()
+    {
+        settingsParent.SetActive(true);
+    }
+
+    public void CloseSettingsWindow()
+    {
+        settingsParent.SetActive(false);
+    }
+
+    
     public void StartGame()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    // Update is called once per frame
+    
     public void ExitGame()
     {
         Application.Quit();
