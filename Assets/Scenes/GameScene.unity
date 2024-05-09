@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationManager: {fileID: 148218033}
-  MyField: {fileID: 1456088449}
+  myField: {fileID: 1456088449}
 --- !u!114 &148218033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba1d975f0b4f7d4490b6f8aa93b8519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardAnimationParent: {fileID: 1267051982}
+  cardAnimationParent: {fileID: 1267051982}
 --- !u!1 &157213769 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2473393469786290536, guid: 36730b63d590a044a8ed6efbedd672a2, type: 3}
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationManager: {fileID: 237390616}
-  MyField: {fileID: 276299006}
+  myField: {fileID: 276299006}
   myHandCards: {fileID: 930964955}
 --- !u!114 &237390616
 MonoBehaviour:
@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63050f21e3136734f9ce8da3827d9054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardAnimationParent: {fileID: 792973153}
+  cardAnimationParent: {fileID: 792973153}
 --- !u!1 &276299006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,8 +1291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9223c2db81beb714ca0c5fcaeeb914c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainController: {fileID: 1071266011}
-  MyDiscardPile: {fileID: 34730662}
+  mainController: {fileID: 1071266011}
+  myDiscardPile: {fileID: 0}
 --- !u!114 &276299009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4978,8 +4978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53686f5b6e4911f4f94a184ab36b3a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerController: {fileID: 148218032}
-  EnemyController: {fileID: 237390614}
+  playerController: {fileID: 148218032}
+  enemyController: {fileID: 237390614}
   testInfoTMP: {fileID: 1831182488}
   playerHealthBar: {fileID: 1722732409}
   opponentHealthBar: {fileID: 1514940089}
@@ -6384,8 +6384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9223c2db81beb714ca0c5fcaeeb914c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainController: {fileID: 1071266011}
-  MyDiscardPile: {fileID: 935913654}
+  mainController: {fileID: 1071266011}
+  myDiscardPile: {fileID: 0}
 --- !u!114 &1456088452
 MonoBehaviour:
   m_ObjectHideFlags: 0

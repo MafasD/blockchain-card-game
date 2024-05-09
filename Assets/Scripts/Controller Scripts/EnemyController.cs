@@ -31,7 +31,7 @@ public class EnemyController : CardController
             animationManager.SendCardToDiscardPile(); // Set the send card to discard pile animation.
         }  
         else
-            MyField.GetComponent<FieldHandler>().RemoveCards(); // Removes all the cards in the field. (No animations)
+            myField.GetComponent<FieldHandler>().RemoveCards(); // Removes all the cards in the field. (No animations)
     }
 
     IEnumerator BotPlayStart() // Currently chooses random card from deck
@@ -51,7 +51,7 @@ public class EnemyController : CardController
         }
             
         else
-            MyField.GetComponent<FieldHandler>().AddCard(pickACard); // Adds card manually to the field. (No animations)
+            myField.GetComponent<FieldHandler>().AddCard(pickACard); // Adds card manually to the field. (No animations)
 
     }
 

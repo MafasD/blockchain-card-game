@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class MainController : MonoBehaviour
 {
-    public CardController PlayerController, EnemyController; // Card controllers for bridging methods between player- and enemy fields
-    CardController CurrentController; // Determines which controller is currently in use (player or enemy/bot)
+    public CardController playerController, enemyController; // Card controllers for bridging methods between player- and enemy fields
+    CardController currentController; // Determines which controller is currently in use (player or enemy/bot)
     public TMP_Text testInfoTMP; // Shows information on the screen (for testing!)
     int turnCounter, roundCount; // Keeps track who is playing now (0=player, 1=enemy/bot, 2=round end)
     bool bothCardsRevealed = false; // Flag for checking up if both players cards are revealed
@@ -23,8 +23,8 @@ public class MainController : MonoBehaviour
 
     void Awake()
     {
-        CurrentController = PlayerController; // Player starts the game
-        CurrentController.MyTurn();
+        currentController = playerController; // Player starts the game
+        currentController.MyTurn(); // Set the first turn.
         testInfoTMP.text = "";
     }
 
@@ -45,13 +45,13 @@ public class MainController : MonoBehaviour
         else
             turnCounter++;
 
-        CurrentController.EndOfMyTurn(); // Inform to the current controller when turn ends
+        currentController.EndOfMyTurn(); // Inform to the current controller when turn ends
 
         if (turnCounter == 0) // Player's turn next
-            CurrentController = PlayerController;
+            currentController = playerController;
 
         else if (turnCounter == 1) // Enemy's turn next
-            CurrentController = EnemyController;
+            currentController = enemyController;
 
         else // Both players are ready -> reveal cards
         { 
@@ -60,20 +60,20 @@ public class MainController : MonoBehaviour
             return;
         }
 
-        CurrentController.MyTurn(); // Start turn method for the current controller
+        currentController.MyTurn(); // Start turn method for the current controller
     }
 
     void RevealCards() // Set field cards visible
     {
-        PlayerController.RevealCardFromField();
-        EnemyController.RevealCardFromField();
+        playerController.RevealCardFromField();
+        enemyController.RevealCardFromField();
         bothCardsRevealed = true;
     }
 
     void CompareCards() // Compares both cards and determines who wins
     {
-        Card playerCard = PlayerController.GetMyCard();
-        Card enemyCard = EnemyController.GetMyCard();
+        Card playerCard = playerController.GetMyCard();
+        Card enemyCard = enemyController.GetMyCard();
         int results = compareCards.Compare(playerCard, enemyCard);
         
         if(results == 0) // Draw
@@ -151,8 +151,8 @@ public class MainController : MonoBehaviour
     IEnumerator IEStartNewRound() // Coroutine for waiting a little before sending cards to discard pile
     {
         yield return new WaitForSeconds(2f); // How many seconds to wait before sending cards to discard piles.
-        PlayerController.AddCardsToDiscardPile();
-        EnemyController.AddCardsToDiscardPile();
+        playerController.AddCardsToDiscardPile();
+        enemyController.AddCardsToDiscardPile();
         testInfoTMP.text = "";
         NextTurn(); // Next turn can be set.
     }

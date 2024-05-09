@@ -11,22 +11,22 @@ public class EnemyAnimationManager : AnimationManager
 
     public override void SendCardToMyField(GameObject myCard)
     {
-        MyCard = myCard;
-        CardAnimationParent.transform.position = MyCard.transform.position;
-        MyCard.transform.SetParent(CardAnimationParent.transform, false);
-        MyCard.transform.position = CardAnimationParent.transform.position;
+        base.myCard = myCard;
+        cardAnimationParent.transform.position = base.myCard.transform.position;
+        base.myCard.transform.SetParent(cardAnimationParent.transform, false);
+        base.myCard.transform.position = cardAnimationParent.transform.position;
         animHandler.PlayDrawCard();
     }
 
     public override void AnimationEndDrawCard()
     {
         cardController.SetIsAnimationRunning(false);
-        MyField.GetComponent<FieldHandler>().AddCard(MyCard); // Adds card manually to the field
+        myField.GetComponent<FieldHandler>().AddCard(myCard); // Adds card manually to the field
     }
 
     public override void SendCardToDiscardPile()
     {
-        MyCard.transform.SetParent(CardAnimationParent.transform, false); // Set parent to object that has animation attached to it.
+        myCard.transform.SetParent(cardAnimationParent.transform, false); // Set parent to object that has animation attached to it.
         animHandler.PlayMoveToDiscardPile();
     }
 

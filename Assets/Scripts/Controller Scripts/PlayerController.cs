@@ -11,17 +11,17 @@ public class PlayerController : CardController
             animationManager = GetComponent<PlayerAnimationManager>();
     }
 
-    public override void MyTurn()
+    public override void MyTurn() // Player's turn starts
     {
         isPlayersTurn = true;
     }
 
-    public override void EndOfMyTurn()
+    public override void EndOfMyTurn() // Player's turn ends.
     {
         isPlayersTurn = false;
     }
 
-    public override void AddCardsToDiscardPile()
+    public override void AddCardsToDiscardPile() // Functionality for adding cards to discard pile.
     {
         if (showAnimations)
         {
@@ -29,7 +29,7 @@ public class PlayerController : CardController
             animationManager.SendCardToDiscardPile();
         }
         else
-            MyField.GetComponent<FieldHandler>().RemoveCards();
+            myField.GetComponent<FieldHandler>().RemoveCards();
     }
 
     public bool CheckIfPlayersTurn() // Getter for player's turn flag (used in DragDropV2.cs)

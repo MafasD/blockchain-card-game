@@ -9,8 +9,8 @@ using UnityEngine.UIElements;
 public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField] GameObject Frontside, Backside; // Frontside shows all the card info; Backside all the info.
-    GameObject PlayerController;
-    GameObject PlayerField, CurrentField; // PlayerField = parent of the table card objects; CurrentField = if the field is active.
+    PlayerController playerController;
+    GameObject playerField, currentField; // PlayerField = parent of the table card objects; CurrentField = if the field is active.
     Vector2 startPosition; // Origin position where the card is spawned/placed.
     bool isDragging = false; // Flags if the player is moving the card.
     bool isPlaced = false; //This will track whether a card has been placed on the field.
@@ -19,8 +19,8 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     void Awake()
     {
-        PlayerField = GameObject.FindWithTag("PlayerField");
-        PlayerController = GameObject.FindWithTag("PlayerController");
+        playerField = GameObject.FindWithTag("PlayerField");
+        playerController = GameObject.FindWithTag("PlayerController").GetComponent<PlayerController>();
         startPosition = transform.localPosition; // Sets the start position before runtime
         Frontside.SetActive(true); // Show front side of the card (for the player)
         Backside.SetActive(false); // Hide the backside of the card
@@ -34,15 +34,15 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             return;
 
         if (other.CompareTag("PlayerField"))
-            CurrentField = other.gameObject;
+            currentField = other.gameObject;
 
     }
 
     void OnTriggerExit2D(Collider2D other) // When both objects BoxCollider2D's trigger collision ends
     {
-        if (other.CompareTag("PlayerField") && CurrentField != null)
+        if (other.CompareTag("PlayerField") && currentField != null)
         {
-            CurrentField = null;
+            currentField = null;
         }
     }
 
@@ -50,7 +50,7 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public void OnBeginDrag(PointerEventData eventData)
     {
         startPosition = transform.localPosition;
-        bool isPlayersTurn = PlayerController.GetComponent<PlayerController>().CheckIfPlayersTurn();
+        bool isPlayersTurn = playerController.CheckIfPlayersTurn();
         if (isPlaced || !isPlayersTurn) // Only allows dragging if the card hasn't been placed, so once it's on the field we can't move it anymore.
             return;
 
@@ -72,9 +72,9 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (isPlaced)
             return;
 
-        if (CurrentField == PlayerField)
+        if (currentField == playerField)
         {
-            PlayerField.GetComponent<FieldHandler>().AddCard(gameObject); // Manually adds a card to the PlayerField
+            playerField.GetComponent<FieldHandler>().AddCard(gameObject); // Manually adds a card to the PlayerField
             isPlaced = true; // Card is now placed on the PlayerField.
             Frontside.SetActive(false); // Hide card information
             Backside.SetActive(true);
@@ -84,7 +84,7 @@ public class DragDropV2 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             //Delays the method to ensure that the card is removed from hand when this is run, because it was running too early and the draw card button was not working as it should.
             Invoke("UpdateDrawButtonState", 0.1f);
         }
-        else if (CurrentField == null)
+        else if (currentField == null)
             transform.localPosition = startPosition; // Return card to the starting position
 
         isDragging = false; // Dragging event ends

@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    public AnimationManager animationManager;
-    Animator animator;
+    public AnimationManager animationManager; // Manager who takes care of animation events.
+    Animator animator; // Animator in this game object.
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void PlayDrawCard()
+    public void PlayDrawCard() // Plays the "DrawCard" animation of the chosen Animator (controller).
     {
         animator.SetTrigger("DrawCard");
 
