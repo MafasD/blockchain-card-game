@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsParent: {fileID: 1846912541}
+  menuParent: {fileID: 1111182866}
 --- !u!1 &570844888
 GameObject:
   m_ObjectHideFlags: 0

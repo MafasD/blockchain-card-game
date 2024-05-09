@@ -6,20 +6,24 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsParent;
+    public GameObject menuParent;
 
     private void Awake()
     {
         settingsParent.SetActive(false); // Hide the settings at the start.
+        menuParent.SetActive(true);
     }
 
     public void OpenSettingsWindow()
     {
         settingsParent.SetActive(true);
+        menuParent.SetActive(false);
     }
 
     public void CloseSettingsWindow()
     {
         settingsParent.SetActive(false);
+        menuParent.SetActive(true);
     }
 
     
