@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Canvas DeckSelectCanvas;
+    public Canvas DeckSelectCanvas; // Popup window for selection player's deck.
 
     private void Awake()
     {
-        DeckSelectCanvas.enabled = false;
+        DeckSelectCanvas.enabled = false; // Hide the deck selection window at the start.
     }
 
 

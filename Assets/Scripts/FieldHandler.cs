@@ -5,23 +5,23 @@ using UnityEngine;
 
 public class FieldHandler : MonoBehaviour
 {
-    public MainController MainController;
-    public Transform MyDiscardPile;
-    GameObject MyCard; // Card that is dropped on the field (as a child)
+    public MainController mainController;
+    public Transform myDiscardPile;
+    GameObject myCard; // Card that is dropped on the field (as a child)
 
     public void AddCard(GameObject child) // Called everytime a new card is added (DragDropV2.cs)
     {
         // Sets object as a child
-        MyCard = child;
-        MyCard.transform.SetParent(transform, false);
-        MyCard.transform.position = transform.position;
+        myCard = child;
+        myCard.transform.SetParent(transform, false);
+        myCard.transform.position = transform.position;
 
-        MainController.NextTurn(); // Send info to the MainController to continue process
+        mainController.NextTurn(); // Send info to the MainController to continue process
     }
 
     public Card GetCard() // Creates a Card object (class)
     {
-        int elementID = MyCard.GetComponent<InitCardPrefab>().GetElementID();
+        int elementID = myCard.GetComponent<InitCardPrefab>().GetElementID();
         Card card = new Card(elementID);
         return card;
     }
@@ -53,7 +53,7 @@ public class FieldHandler : MonoBehaviour
         foreach (Transform child in transform)
         {
             //Moves the card to the discard pile
-            child.SetParent(MyDiscardPile);
+            child.SetParent(myDiscardPile);
             //Reset card's local position and rotation
             child.localPosition = Vector3.zero; //Sets card position to (0,0,0) inside discard pile
             child.localRotation = Quaternion.identity; //Resets card rotation, making enemycards appear upside down, inside discard pile

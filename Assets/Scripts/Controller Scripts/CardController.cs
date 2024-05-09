@@ -6,7 +6,13 @@ using UnityEngine;
 
 public abstract class CardController : MonoBehaviour
 {
-    public GameObject MyField; // My field parent object where cards are dropped; My hand cards parent object
+    public AnimationManager animationManager; // Handles Unity animations.
+
+    public GameObject myField; // My field parent object where cards are dropped; My hand cards parent object
+
+    protected bool showAnimations = true; // Flag for showing card animations.
+
+    protected bool isAnimationRunning = false; // Flag for informing if the animation is running. (Works only if showAnimations is active)
 
     public abstract void MyTurn(); // Called when turn starts
 
@@ -16,11 +22,17 @@ public abstract class CardController : MonoBehaviour
 
     public void RevealCardFromField() // Reveals card from the field to the all players
     {
-        MyField.GetComponent<FieldHandler>().RevealCards();
+        myField.GetComponent<FieldHandler>().RevealCards();
     }
+
     public Card GetMyCard() // Get card information as a Card object (class)
     {
-        return MyField.GetComponent<FieldHandler>().GetCard();
+        return myField.GetComponent<FieldHandler>().GetCard();
+    }
+
+    public void SetIsAnimationRunning(bool isAnimationRunning) // Setter for animation is running flag -> Called from the AnimationManager.
+    {
+        this.isAnimationRunning = isAnimationRunning;
     }
 
 }
