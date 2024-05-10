@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainController: {fileID: 1071266011}
-  myDiscardPile: {fileID: 0}
+  myDiscardPile: {fileID: 34730662}
 --- !u!114 &276299009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6385,7 +6385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainController: {fileID: 1071266011}
-  myDiscardPile: {fileID: 0}
+  myDiscardPile: {fileID: 935913654}
 --- !u!114 &1456088452
 MonoBehaviour:
   m_ObjectHideFlags: 0
