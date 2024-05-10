@@ -157,6 +157,10 @@ public class MainController : MonoBehaviour
         NextTurn(); // Next turn can be set.
     }
 
+    public void OnClickReturnToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
 
 
